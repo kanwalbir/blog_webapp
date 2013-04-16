@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+    
+    <h2>{{entry.blog_title}}</h2>
+    
+    Created by <b>{{entry.blog_author}}</b> on {{entry.last_modified.strftime("%b %d, %Y")}}
+    
+    <hr>
+    <div class="post-content">
+        <pre>{{entry.blog_content}}</pre>
+    </div>
+
+    <hr>
+    <a class="blog-link" href="/blog/_edit/{{entry.key().id()}}">edit this entry</a> |
+    <a class="blog-link" href="/blog/{{entry.key().id()}}/.json">view json</a>
+
+    <div class="age">
+        {% if t == 1 %}
+            Queried 1 minute ago
+        {% else %}
+            Queried {{t}} minutes ago
+        {% endif %}
+    </div>
+
+{% endblock %}

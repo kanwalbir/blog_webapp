@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <h2>All Blog Entries</h2>
+    <a class="blog-link" href="/blog/newpost">create a new blog entry</a> |
+    <a class="blog-link" href="/blog/.json">view json</a>
+    <hr>
+
+    {% for e in entries %}
+        <div class="post">
+            <div class="post-heading">
+                <div class="post-title">
+                    <a class="blog-link" href="/blog/{{e.key().id()}}" >{{e.blog_title}}</a>
+                </div>
+
+                <div class="post-date">
+                    {{e.last_modified.strftime("%b %d, %Y")}}
+                </div>
+            </div>
+
+            <div class="post-content">
+                <pre>{{e.blog_content}}</pre>
+            </div>
+
+            <hr>
+        </div>
+
+    {% endfor %}
+
+    <div class="age">
+        {% if t == 1 %}
+            Queried 1 minute ago
+        {% else %}
+            Queried {{t}} minutes ago
+        {% endif %}
+    </div>
+
+{% endblock %}
+
+
+
